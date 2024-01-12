@@ -1,0 +1,18 @@
+package Exercise01;
+
+public class IsPrimeNumberTask implements Runnable {
+	private int x;
+	private String taskName;
+	
+	public IsPrimeNumberTask(int x, String taskName) {
+		this.x = x;
+		this.taskName = taskName;
+	}
+	
+	
+	
+	
+	
+	
+
+}

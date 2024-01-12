@@ -1,0 +1,33 @@
+package Exercise01;
+
+public class IsPrimeNumberTask implements Runnable {
+	private int x;
+	private String taskName;
+
+	public IsPrimeNumberTask(int x, String taskName) {
+		this.x = x;
+		this.taskName = taskName;
+	}
+
+	public boolean isPrime() {
+		if(x <= 1) {
+			return false;
+		}
+		for(int i = 2; i <= Math.sqrt(x); i++ ) {
+			if(x % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public void run() {
+		if(isPrime()) {
+			System.out.println(x + " là số nguyên tố !");
+		}else {
+			System.out.println(x + " không là số nguyên tố !");
+		}
+	}
+
+}

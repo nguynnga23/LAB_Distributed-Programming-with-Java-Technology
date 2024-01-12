@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Runnable"/>
     <fullyQualifiedTypeName name="Exercise01.YourTask"/>
     <fullyQualifiedTypeName name="java.util.concurrent.Callable"/>
     <fullyQualifiedTypeName name="Exercise01.YourTask3"/>
     <fullyQualifiedTypeName name="java.util.concurrent.FutureTask"/>
+    <fullyQualifiedTypeName name="Exercise01.YourTask1"/>
+    <fullyQualifiedTypeName name="Exercise01.YourTask2"/>
+    <fullyQualifiedTypeName name="Exercise01.DisplayNumberTask"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="Exercise01.IsPrimeNumberTask"/>
+    <fullyQualifiedTypeName name="Exercise02.AnotherTask"/>
+    <fullyQualifiedTypeName name="java.awt.Taskbar"/>
+    <fullyQualifiedTypeName name="Exercise02.YourTask"/>
+    <fullyQualifiedTypeName name="Exercise02_YieldMethod_vs_DaemonThread.YieldMethodDemo"/>
+    <fullyQualifiedTypeName name="Exercise02_YieldMethod_vs_DaemonThread.DaemonThreadDemo"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="java.lang.Runnable"/>
+    <fullyQualifiedTypeName name="Exercise02__Wait_Notisy_MechanismDemo.MyQeue"/>
+    <fullyQualifiedTypeName name="Exercise02__Wait_Notisy_MechanismDemo.Consumer"/>
+    <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.ExecutorService"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.Executors"/>
 </qualifiedTypeNameHistroy>

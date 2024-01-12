@@ -1,0 +1,16 @@
+package Exercise01;
+
+public class IsPrimeNumberTask {
+	private int x;
+	private String taskName;
+	z
+	public IsPrimeNumberTask(int x, String taskName) {
+		super();
+		this.x = x;
+		this.taskName = taskName;
+	}
+	
+	
+	
+
+}

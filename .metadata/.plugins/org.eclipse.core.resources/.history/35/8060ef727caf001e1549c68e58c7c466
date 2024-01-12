@@ -1,0 +1,7 @@
+package Exercise02;
+
+public class TestJoinThread {
+	public static void main(String[] args) {
+		
+	}
+}
