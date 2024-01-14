@@ -1,0 +1,8 @@
+package Exercise04;
+
+import javax.swing.SwingWorker;
+
+public class CopyFile extends SwingWorker<Void, Integer> {
+	
+
+}

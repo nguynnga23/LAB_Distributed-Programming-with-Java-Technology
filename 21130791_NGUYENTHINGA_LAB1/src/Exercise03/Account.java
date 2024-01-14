@@ -6,7 +6,7 @@ public class Account implements Runnable {
 
 	public Account(double balance, long number) {
 		super();
-		this.balance = 0;
+		this.balance = 0.0;
 		this.number = number;
 	}
 
@@ -18,23 +18,23 @@ public class Account implements Runnable {
 		this.balance = balance;
 	}
 
-	public boolean Deposit(double moneyDeposit) {
+	public synchronized boolean Deposit(double moneyDeposit) {
 		if (moneyDeposit <= 0.0) {
 			System.out.println("The deposit amount must be greater than 0 !");
 			return false;
 		}
 		balance += moneyDeposit;
-		System.out.println("Deposit successfully !");
+  		System.out.println("Deposit successfully !" + balance);
 		return true;
 	}
 
-	public boolean Withdraw(double moneyWithdraw) {
-		if (moneyWithdraw > balance) {
-			System.out.println("The balance in your account is insufficient !");
+	public synchronized boolean Withdraw(double moneyWithdraw) {
+		if (moneyWithdraw >= balance) {
+			System.out.println("The balance in your account is insufficient !" + balance);
 			return false;
 		}
 		balance -= moneyWithdraw;
-		System.out.println("Withdraw successfully !");
+		System.out.println("Withdraw successfully !" + balance);
 		return true;
 	}
 

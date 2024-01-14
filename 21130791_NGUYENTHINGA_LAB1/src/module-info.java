@@ -6,4 +6,5 @@
  *
  */
 module LAB1 {
+	requires java.desktop;
 }
