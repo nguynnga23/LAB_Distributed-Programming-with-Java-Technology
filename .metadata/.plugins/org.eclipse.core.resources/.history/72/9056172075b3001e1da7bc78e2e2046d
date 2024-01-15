@@ -1,0 +1,147 @@
+package Exercise06;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+
+public class FileSplitter extends JFrame {
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JProgressBar progressBar;
+
+    public FileSplitter() {
+        setTitle("File Splitter");
+        setSize(537, 329);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+
+        getContentPane().add(panel);
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel_1 = new JPanel();
+        panel.add(panel_1, BorderLayout.CENTER);
+        panel_1.setLayout(new BorderLayout(0, 0));
+        
+        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        panel_1.add(tabbedPane);
+        
+        JPanel panel_2 = new JPanel();
+        panel_2.setBackground(new Color(255, 255, 255));
+        tabbedPane.addTab("Split File", null, panel_2, null);
+        panel_2.setLayout(null);
+        
+        textField = new JTextField();
+        textField.setBounds(91, 36, 375, 26);
+        panel_2.add(textField);
+        textField.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Input File :");
+        lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+        lblNewLabel.setBounds(10, 36, 74, 26);
+        panel_2.add(lblNewLabel);
+        
+        textField_1 = new JTextField();
+        textField_1.setColumns(10);
+        textField_1.setBounds(91, 75, 375, 26);
+        panel_2.add(textField_1);
+        
+        JLabel lblOutputFile = new JLabel("Output File :");
+        lblOutputFile.setFont(new Font("Tahoma", Font.BOLD, 11));
+        lblOutputFile.setBounds(10, 75, 74, 26);
+        panel_2.add(lblOutputFile);
+        
+        textField_2 = new JTextField();
+        textField_2.setColumns(10);
+        textField_2.setBounds(216, 111, 250, 26);
+        panel_2.add(textField_2);
+        
+        JLabel lblEnterNumberOf = new JLabel("Enter number of files to split into :");
+        lblEnterNumberOf.setFont(new Font("Tahoma", Font.BOLD, 11));
+        lblEnterNumberOf.setBounds(10, 111, 207, 26);
+        panel_2.add(lblEnterNumberOf);
+        
+        JButton btnNewButton = new JButton("Split Its");
+        btnNewButton.setBounds(216, 180, 85, 26);
+        panel_2.add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("...");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		splitFile();
+        		
+        	}
+        });
+        btnNewButton_1.setBounds(470, 36, 38, 26);
+        panel_2.add(btnNewButton_1);
+        
+        JButton btnNewButton_1_1 = new JButton("...");
+        btnNewButton_1_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		splitFile();
+        	}
+        });
+        btnNewButton_1_1.setBounds(470, 75, 38, 26);
+        panel_2.add(btnNewButton_1_1);
+        
+        progressBar = new JProgressBar();
+        progressBar.setBounds(10, 229, 498, 19);
+        panel_2.add(progressBar);
+        
+        JPanel panel_3 = new JPanel();
+        tabbedPane.addTab("Combine File", null, panel_3, null);
+    }
+    
+    private void splitFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select File to Split");
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            split(selectedFile);
+        }
+    }
+
+    private void split(File file) {
+        try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(file))) {
+            int partNumber = 2;
+            int bytesRead;
+            byte[] buffer = new byte[1024 * 1024]; // 1 MB buffer size
+            long fileSize = file.length();
+            long totalBytesRead = 0;
+
+            while ((bytesRead = in.read(buffer)) != -1) {
+                String partFileName = file.getName() + ".part" + partNumber;
+                try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(partFileName))) {
+                    out.write(buffer, 0, bytesRead);
+                }
+
+                totalBytesRead += bytesRead;
+                int progress = (int) ((totalBytesRead * 100) / fileSize);
+                progressBar.setValue(progress);
+
+                partNumber++;
+            }
+
+            JOptionPane.showMessageDialog(this, "File split successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error occurred while splitting the file.");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new FileSplitter().setVisible(true);
+            }
+        });
+    }
+}
