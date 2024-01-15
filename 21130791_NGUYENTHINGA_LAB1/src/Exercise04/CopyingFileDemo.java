@@ -30,7 +30,6 @@ public class CopyingFileDemo extends JFrame {
 	private JTextField txtFrom;
 	private JTextField txtTo;
 
-	private CopyFile c;
 	private JProgressBar progressBar;
 	/**
 	 * Launch the application.

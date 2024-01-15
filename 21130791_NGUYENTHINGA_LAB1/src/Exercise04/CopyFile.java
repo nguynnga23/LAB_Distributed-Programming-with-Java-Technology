@@ -1,90 +1,59 @@
 package Exercise04;
 
-import java.awt.HeadlessException;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.ByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class CopyFile extends SwingWorker<Integer, Integer> {
 
-	private File fileFrom;
-	private File fileTo;
-	/**
-	 * @param fileFrom
-	 * @param fileTo
-	 */
-	public CopyFile(File fileFrom, File fileTo) {
-		this.fileFrom = fileFrom;
-		this.fileTo = fileTo;
-	}
-	
-	@Override
-	protected Integer doInBackground() throws Exception {
-		
-		BufferedInputStream in = null;
-		BufferedOutputStream out = null;
-		byte[] buffs = null;
+    private File fileFrom;
+    private File fileTo;
 
-		try {
-			in = new BufferedInputStream(new FileInputStream(fileFrom));
-			out = new BufferedOutputStream(new FileOutputStream(fileTo));
+    public CopyFile(File fileFrom, File fileTo) {
+        this.fileFrom = fileFrom;
+        this.fileTo = fileTo;
+    }
 
-			buffs = Files.readAllBytes(Paths.get(fileFrom.getAbsolutePath()));
-			int n = buffs.length /100;
-			byte[] b = new byte[n];
-			int p = 0;
-			
-			while(in.available() > 0) {
-				int x = in.read(b, 0, n);
-				out.write(b, 0, x);
-				p++;
-				setProgress(Math.min(100, p));
-			}
+    @Override
+    protected Integer doInBackground() throws Exception {
+        try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(fileFrom));
+             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(fileTo))) {
 
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				in.close();
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+            long fileSize = fileFrom.length();
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            long totalBytesRead = 0;
 
-		}
-		
-		return buffs.length;
-	}
-	@Override
-	protected void process(List<Integer> chunks) {
-		super.process(chunks);
-	}
-	@Override
-	protected void done() {
-		try {
-			JOptionPane.showMessageDialog(null, "Finished! Bytes in total: " + get());
-		} catch (HeadlessException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-	}
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+                totalBytesRead += bytesRead;
 
+                int progress = (int) ((totalBytesRead * 100) / fileSize);
+                setProgress(progress);
+            }
+
+            return (int) totalBytesRead;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e; // Ném lại ngoại lệ để xử lý trong phương thức done()
+        }
+    }
+
+    @Override
+    protected void process(List<Integer> chunks) {
+    }
+
+    @Override
+    protected void done() {
+        try {
+            if (!isCancelled()) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành! Tổng số byte: " + get());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
