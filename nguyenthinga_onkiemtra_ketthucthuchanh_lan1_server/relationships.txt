@@ -1,0 +1,17 @@
+- ONE TO MANY
+1. Doctor - Treatment x
+2. Patient - Treatment x
+3. Department - Treatment x
+
+Phía One : 
+	Thêm @OneToMany vs thuộc tính mappedBy
+Phía Many thêm : 
+	+ @ManyToOne
+	+ @JoinColumn với thuộc tính name
+	
+- MANY TO MANY (JoinTable)
+1. Patient - Department x
+
+- INHERITANCE (InheritanceType.TABLE_PER_CLASS)
+1. Person - Doctor x
+2. Person - Patient x

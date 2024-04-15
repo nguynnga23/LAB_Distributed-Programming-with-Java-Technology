@@ -1,0 +1,29 @@
+1. Mối quan hệ 1 - 1 (One to One)
+- Instuctor (chủ thể) - OfficeAssignment (phụ thuộc): x
+Khóa chính bên (phụ thuộc) là khóa chính bên (chủ thể)
+
+
+2. Mối quan hệ 1 - N (One to Many)
+- Department - Course  x
+- Student - StudentGrade x
+- Course - StudentGrade x
+	Phía One : Thêm @OneToMany vs thuộc tính mappedBy
+	Phía Many thêm : 
+	+ @ManyToOne
+	+ @JoinColumn với thuộc tính name
+
+3. Mối quan hệ N - N (Many to Many)
+- Instructor - Course (viết lớp mô tả khóa riêng))
+	− Cả 2 bên điều khai báo @ManyToMany
+	− Bên chủ thể với thuộc tính mappedBy
+	− Bên còn lại thêm @JoinTable, với các thuộc tính:
+		o name = "Table_Name",
+		o joinColumns =@JoinColumn(name = "Column_name"),
+		o inverseJoinColumns = @JoinColumn(name = "Column_name")
+
+4. Mối quan hệ kế thừa (Inheritance) (lớp cha - lớp con)
+- Person - Student (SINGLE_TABLE) x
+- Person - Instuctor (SINGLE_TABLE) x
+
+- Course - OnlineCourse (JOINED) x
+- Course - OnsiteCourse (JOINED) x

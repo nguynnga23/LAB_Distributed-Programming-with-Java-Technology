@@ -1,0 +1,23 @@
+1. 1-1
+- Person - Contact 
+- Store - Contact 
+- Store - Address
+- Customer - Address
+
+2. 1-n
+- Store - Staff 
+- Store - Stock
+- Product - Stock
+- Product - OrderItem
+- Category - Product
+- Brand - Product
+- Order - OrderItem
+- Staff - Order
+- Customer - Order
+- Staff - Staff 
+3. n-n
+- null
+
+4. Kế thừa (InheritanceType.TABLE_PER_CLASS)
+- Person - Customer x
+- Person - Staff x
