@@ -1,0 +1,10 @@
+1. n - n : 
+
++ Item - Ingredient => items_ingredients
+
+2. Kế thừa : TABLE_PER_CLASS
+
++ Item - Food
++ Item - Beverage
+
+

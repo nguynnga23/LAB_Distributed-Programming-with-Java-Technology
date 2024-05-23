@@ -1,22 +1,15 @@
 package server;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 
 import dao.CourseDao;
 import dao.DepartmentDao;
@@ -57,7 +50,9 @@ public class Server {
 		private StudentDao studentDao;
 		private DepartmentDao departmentDao;
 		private CourseDao courseDao;
+		
 		private Socket socket;
+		
 		private Department dept;
 		private int deptID;
 		private List<Course> courses;
