@@ -40,5 +40,6 @@
 	<classpathentry kind="lib" path="libs/libs_lan1.jar"/>
 	<classpathentry kind="lib" path="libs/libs_lan4.jar"/>
 	<classpathentry kind="lib" path="libs/libs_lan2.jar"/>
+	<classpathentry kind="lib" path="libs/libs_lan3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -26,7 +26,7 @@ public class Patient extends Person implements Serializable {
 
 	@OneToMany(mappedBy = "patient")
 	private Set<Treatment> treatments;
-	
+
 	public Patient() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,6 +39,13 @@ public class Patient extends Person implements Serializable {
 
 	public Patient(String gender, LocalDate dateOfBirth, String address) {
 		super();
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+	}
+
+	public Patient(String id, String name, String phone, String gender, LocalDate dateOfBirth, String address) {
+		super(id, name, phone);
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.address = address;
@@ -74,7 +81,8 @@ public class Patient extends Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Patient [gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", address=" + address + "]";
+		return "Patient [gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", address=" + address + ", treatments="
+				+ treatments + ", id=" + id + ", name=" + name + ", phone=" + phone + "]";
 	}
 
 }

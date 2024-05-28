@@ -19,7 +19,7 @@ public class Doctor extends Person implements Serializable {
 
 	@OneToMany(mappedBy = "doctor")
 	private Set<Treatment> treatments;
-	
+
 	public Doctor() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -43,9 +43,16 @@ public class Doctor extends Person implements Serializable {
 		this.speciality = speciality;
 	}
 
-	@Override
-	public String toString() {
-		return "Doctor [speciality=" + speciality + "]";
+	public Set<Treatment> getTreatments() {
+		return treatments;
 	}
 
+	public void setTreatments(Set<Treatment> treatments) {
+		this.treatments = treatments;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor [speciality=" + speciality + ", id=" + id + ", name=" + name + ", phone=" + phone + "]";
+	}
 }

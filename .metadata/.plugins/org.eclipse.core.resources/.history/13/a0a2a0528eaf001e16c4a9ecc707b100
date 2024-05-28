@@ -1,7 +1,0 @@
-package Exercise02__Wait_Notisy_MechanismDemo;
-
-public class Producer_Consumer_Demo {
-	public static void main(String[] args) {
-		
-	}
-}

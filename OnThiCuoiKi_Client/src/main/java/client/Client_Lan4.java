@@ -39,12 +39,14 @@ public class Client_Lan4 {
 					out.writeInt(rating);
 					out.flush();
 
-					@SuppressWarnings("unchecked") List<Book> books = (List<Book>) in.readObject();
+					@SuppressWarnings("unchecked")
+					List<Book> books = (List<Book>) in.readObject();
 					for (Book book : books) {
 						System.out.println(book.toString());
 					}
 					break;
 				case 2:
+					@SuppressWarnings("unchecked")
 					Map<String, Long> map = (Map<String, Long>) in.readObject();
 					Set<Entry<String, Long>> result = map.entrySet();
 					for (Entry<String, Long> entry : result) {
